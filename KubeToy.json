@@ -1,0 +1,1623 @@
+{
+    "name": "KubeToy",
+    "description": "An example application",
+    "enforceCompleteSnapshots": false,
+    "propSheet": {"properties": []},
+    "templatePropSheet": {
+        "name": "template",
+        "properties": []
+    },
+    "components": [{
+        "name": "KubeToy",
+        "description": "A simple node.js application component",
+        "created": 1600354629369,
+        "componentType": "STANDARD",
+        "ignoreQualifiers": 0,
+        "importAutomatically": false,
+        "useVfs": true,
+        "active": true,
+        "deleted": false,
+        "defaultVersionType": "FULL",
+        "cleanupDaysToKeep": 0,
+        "cleanupCountToKeep": 0,
+        "sourceConfigPluginName": "Git",
+        "envPropDefs": [],
+        "resPropDefs": [],
+        "versionPropDefs": [],
+        "propSheetGroup": {"propSheets": [
+            {
+                "name": "GitComponentProperties",
+                "properties": [
+                    {
+                        "name": "branch",
+                        "description": "",
+                        "secure": false
+                    },
+                    {
+                        "name": "excludes",
+                        "description": "",
+                        "secure": false
+                    },
+                    {
+                        "name": "extensions",
+                        "description": "",
+                        "secure": false
+                    },
+                    {
+                        "name": "gitPath",
+                        "value": "git",
+                        "description": "",
+                        "secure": false
+                    },
+                    {
+                        "name": "includes",
+                        "value": "**\/*",
+                        "description": "",
+                        "secure": false
+                    },
+                    {
+                        "name": "password",
+                        "value": "",
+                        "description": "",
+                        "secure": true
+                    },
+                    {
+                        "name": "recursive",
+                        "value": "false",
+                        "description": "",
+                        "secure": false
+                    },
+                    {
+                        "name": "repoUrl",
+                        "value": "https:\/\/github.com\/IBM-ICP-CoC\/KubeToy.git",
+                        "description": "",
+                        "secure": false
+                    },
+                    {
+                        "name": "saveFileExecuteBits",
+                        "value": "false",
+                        "description": "",
+                        "secure": false
+                    },
+                    {
+                        "name": "trustAllCerts",
+                        "value": "false",
+                        "description": "",
+                        "secure": false
+                    },
+                    {
+                        "name": "username",
+                        "description": "",
+                        "secure": false
+                    },
+                    {
+                        "name": "watchTags",
+                        "value": "false",
+                        "description": "",
+                        "secure": false
+                    }
+                ]
+            },
+            {
+                "name": "custom",
+                "properties": []
+            },
+            {
+                "name": "template",
+                "properties": []
+            }
+        ]},
+        "processes": [
+            {
+                "name": "Check OpenShift Cluster Status",
+                "description": "",
+                "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+                "takesVersion": false,
+                "status": "",
+                "active": true,
+                "path": "components\/1749c91b-7141-1349-3280-35cec68c8c45\/processes\/1749c91b-7371-9e4e-b931-e8b1a860d46e",
+                "deleted": false,
+                "propDefs": [],
+                "rootActivity": {
+                    "edges": [
+                        {
+                            "to": "d3bfa6c6324104d4d74ec73a53c77e",
+                            "from": "Show Current Running Apps in Project",
+                            "type": "SUCCESS",
+                            "value": ""
+                        },
+                        {
+                            "to": "Show Current Running Apps in Project",
+                            "type": "ALWAYS",
+                            "value": ""
+                        }
+                    ],
+                    "offsets": [
+                        {
+                            "name": "d3bfa6c6324104d4d74ec73a53c77e",
+                            "x": -5,
+                            "y": 450,
+                            "h": 80,
+                            "w": 120
+                        },
+                        {
+                            "name": "Show Current Running Apps in Project",
+                            "x": -135,
+                            "y": 230,
+                            "h": 70,
+                            "w": 340
+                        }
+                    ],
+                    "layoutMode": "auto",
+                    "type": "graph",
+                    "name": "2b851115-9537-4723-9baa-c221e47f91ac",
+                    "children": [
+                        {
+                            "type": "finish",
+                            "name": "d3bfa6c6324104d4d74ec73a53c77e",
+                            "children": []
+                        },
+                        {
+                            "allowFailure": false,
+                            "useImpersonation": false,
+                            "showHidden": false,
+                            "impersonationUseSudo": false,
+                            "pluginVersion": 9,
+                            "commandName": "Shell",
+                            "pluginName": "Shell",
+                            "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                            "properties": {
+                                "directoryOffset": ".",
+                                "shellInterpreter": "",
+                                "scriptBody": "#!\/bin\/bash\nexport KUBECONFIG=.\/kubeconfig\noc login --token=${p:environment\/oc-token} --server=${p:environment\/oc-url}\noc project ${p:environment\/oc-project}\n\necho \"I am user $(id)\"\necho \"My Home directory is $HOME\"\necho \"My current OpenShift project is $(oc project)\"\necho \"Pods running in this namespace\/project are\"\noc get pods",
+                                "runAsDaemon": "false",
+                                "outputFile": ""
+                            },
+                            "cachedAuthTokenRestriction": {
+                                "name": "System Default",
+                                "description": "Used by default for any plugin steps without a specified token restriction",
+                                "restrictions": [{
+                                    "verb": "ALL",
+                                    "url": "\/*"
+                                }]
+                            },
+                            "type": "plugin",
+                            "name": "Show Current Running Apps in Project",
+                            "children": []
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "Cleanup-KubeToy",
+                "description": "",
+                "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+                "takesVersion": true,
+                "inventoryActionType": "ADD",
+                "status": "Active",
+                "configActionType": "ADD",
+                "active": true,
+                "path": "components\/1749c91b-7141-1349-3280-35cec68c8c45\/processes\/1749c91b-73dd-7c73-a829-b35a3e77fc8f",
+                "deleted": false,
+                "propDefs": [],
+                "rootActivity": {
+                    "edges": [
+                        {
+                            "to": "Download Artifacts",
+                            "type": "ALWAYS",
+                            "value": ""
+                        },
+                        {
+                            "to": "OpenShift Login and Display Details",
+                            "from": "Download Artifacts",
+                            "type": "SUCCESS",
+                            "value": ""
+                        },
+                        {
+                            "to": "OpenShift Delete Route",
+                            "from": "OpenShift Delete KubeToy",
+                            "type": "SUCCESS",
+                            "value": ""
+                        },
+                        {
+                            "to": "Display Pods to Ensure they Cleaning Up",
+                            "from": "OpenShift Delete Route",
+                            "type": "SUCCESS",
+                            "value": ""
+                        },
+                        {
+                            "to": "OpenShift Delete KubeToy",
+                            "from": "OpenShift Login and Display Details",
+                            "type": "SUCCESS",
+                            "value": ""
+                        },
+                        {
+                            "to": "d7513d7548094cf8c3ec09d4fa6351",
+                            "from": "Display Pods to Ensure they Cleaning Up",
+                            "type": "SUCCESS",
+                            "value": ""
+                        }
+                    ],
+                    "offsets": [
+                        {
+                            "name": "OpenShift Login and Display Details",
+                            "x": -105,
+                            "y": 250,
+                            "h": 70,
+                            "w": 320
+                        },
+                        {
+                            "name": "d7513d7548094cf8c3ec09d4fa6351",
+                            "x": -5,
+                            "y": 730,
+                            "h": 80,
+                            "w": 120
+                        },
+                        {
+                            "name": "OpenShift Delete Route",
+                            "x": -70,
+                            "y": 490,
+                            "h": 70,
+                            "w": 250
+                        },
+                        {
+                            "name": "OpenShift Delete KubeToy",
+                            "x": -75,
+                            "y": 370,
+                            "h": 70,
+                            "w": 260
+                        },
+                        {
+                            "name": "Download Artifacts",
+                            "x": -75,
+                            "y": 130,
+                            "h": 70,
+                            "w": 260
+                        },
+                        {
+                            "name": "Display Pods to Ensure they Cleaning Up",
+                            "x": -125,
+                            "y": 610,
+                            "h": 70,
+                            "w": 360
+                        }
+                    ],
+                    "layoutMode": "auto",
+                    "type": "graph",
+                    "name": "6d81550d-499f-47c9-94b9-13f2f4d22ddb",
+                    "children": [
+                        {
+                            "type": "finish",
+                            "name": "d7513d7548094cf8c3ec09d4fa6351",
+                            "children": []
+                        },
+                        {
+                            "allowFailure": false,
+                            "useImpersonation": false,
+                            "showHidden": false,
+                            "impersonationUseSudo": false,
+                            "pluginVersion": 9,
+                            "commandName": "Shell",
+                            "pluginName": "Shell",
+                            "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                            "properties": {
+                                "directoryOffset": ".",
+                                "shellInterpreter": "",
+                                "scriptBody": "#!\/bin\/bash\nexport KUBECONFIG=.\/kubeconfig\n\noc delete route kubetoy-route --namespace=${p:environment\/oc-project}",
+                                "runAsDaemon": "false",
+                                "outputFile": ""
+                            },
+                            "cachedAuthTokenRestriction": {
+                                "name": "System Default",
+                                "description": "Used by default for any plugin steps without a specified token restriction",
+                                "restrictions": [{
+                                    "verb": "ALL",
+                                    "url": "\/*"
+                                }]
+                            },
+                            "type": "plugin",
+                            "name": "OpenShift Delete Route",
+                            "children": []
+                        },
+                        {
+                            "allowFailure": false,
+                            "useImpersonation": false,
+                            "showHidden": false,
+                            "impersonationUseSudo": false,
+                            "pluginVersion": 33,
+                            "commandName": "Download Artifacts",
+                            "pluginName": "UrbanCode Deploy Versioned File Storage",
+                            "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                            "properties": {
+                                "directoryOffset": ".",
+                                "artifactSetBaseDir": "",
+                                "fileIncludePatterns": "**\/*",
+                                "fileExcludePatterns": "",
+                                "syncMode": "true",
+                                "handleIncrementalVersions": "false",
+                                "fullVerification": "true",
+                                "setFileExecuteBits": "false",
+                                "verifyFileIntegrity": "false",
+                                "versionId": "${p:version.id}",
+                                "versionType": "${p:version.type}",
+                                "serverUrl": "${p:server.url}",
+                                "compId": "${p:component.id}",
+                                "resId": "${p:resource.id}",
+                                "envId": "${p:environment.id}",
+                                "charset": "",
+                                "label": ""
+                            },
+                            "cachedAuthTokenRestriction": {
+                                "name": "System Default",
+                                "description": "Used by default for any plugin steps without a specified token restriction",
+                                "restrictions": [{
+                                    "verb": "ALL",
+                                    "url": "\/*"
+                                }]
+                            },
+                            "type": "plugin",
+                            "name": "Download Artifacts",
+                            "children": []
+                        },
+                        {
+                            "allowFailure": false,
+                            "useImpersonation": false,
+                            "showHidden": false,
+                            "impersonationUseSudo": false,
+                            "pluginVersion": 9,
+                            "commandName": "Shell",
+                            "pluginName": "Shell",
+                            "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                            "properties": {
+                                "directoryOffset": ".",
+                                "shellInterpreter": "",
+                                "scriptBody": "#!\/bin\/bash\nexport KUBECONFIG=.\/kubeconfig\nls -al\noc delete -f deployment\/kubetoy-all-in-one.yaml --namespace=${p:environment\/oc-project}",
+                                "runAsDaemon": "false",
+                                "outputFile": ""
+                            },
+                            "cachedAuthTokenRestriction": {
+                                "name": "System Default",
+                                "description": "Used by default for any plugin steps without a specified token restriction",
+                                "restrictions": [{
+                                    "verb": "ALL",
+                                    "url": "\/*"
+                                }]
+                            },
+                            "type": "plugin",
+                            "name": "OpenShift Delete KubeToy",
+                            "children": []
+                        },
+                        {
+                            "allowFailure": false,
+                            "useImpersonation": false,
+                            "showHidden": false,
+                            "impersonationUseSudo": false,
+                            "pluginVersion": 9,
+                            "commandName": "Shell",
+                            "pluginName": "Shell",
+                            "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                            "properties": {
+                                "directoryOffset": ".",
+                                "shellInterpreter": "",
+                                "scriptBody": "#!\/bin\/bash\nexport KUBECONFIG=.\/kubeconfig\noc login --token=${p:environment\/oc-token} --server=${p:environment\/oc-url}\necho \"I am user $(id)\"\necho \"My Home directory is $HOME\"\necho \"My current OpenShift project is $(oc project)\"\necho \"Pods running in this namespae\/project are\"\noc get pods",
+                                "runAsDaemon": "false",
+                                "outputFile": ""
+                            },
+                            "cachedAuthTokenRestriction": {
+                                "name": "System Default",
+                                "description": "Used by default for any plugin steps without a specified token restriction",
+                                "restrictions": [{
+                                    "verb": "ALL",
+                                    "url": "\/*"
+                                }]
+                            },
+                            "type": "plugin",
+                            "name": "OpenShift Login and Display Details",
+                            "children": []
+                        },
+                        {
+                            "allowFailure": false,
+                            "useImpersonation": false,
+                            "showHidden": false,
+                            "impersonationUseSudo": false,
+                            "pluginVersion": 9,
+                            "commandName": "Shell",
+                            "pluginName": "Shell",
+                            "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                            "properties": {
+                                "directoryOffset": ".",
+                                "shellInterpreter": "",
+                                "scriptBody": "#!\/bin\/bash\nexport KUBECONFIG=.\/kubeconfig\necho \"I am user $(id)\"\necho \"My Home directory is $HOME\"\necho \"My current OpenShift project is $(oc project)\"\necho \"Pods running in this namespae\/project are\"\noc get pods",
+                                "runAsDaemon": "false",
+                                "outputFile": ""
+                            },
+                            "cachedAuthTokenRestriction": {
+                                "name": "System Default",
+                                "description": "Used by default for any plugin steps without a specified token restriction",
+                                "restrictions": [{
+                                    "verb": "ALL",
+                                    "url": "\/*"
+                                }]
+                            },
+                            "type": "plugin",
+                            "name": "Display Pods to Ensure they Cleaning Up",
+                            "children": []
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "Deploy",
+                "description": "",
+                "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+                "takesVersion": true,
+                "inventoryActionType": "ADD",
+                "status": "Active",
+                "configActionType": "ADD",
+                "active": true,
+                "path": "components\/1749c91b-7141-1349-3280-35cec68c8c45\/processes\/1749c91b-743e-fa93-fc5b-36a9d69f502d",
+                "deleted": false,
+                "propDefs": [],
+                "rootActivity": {
+                    "edges": [
+                        {
+                            "to": "OpenShift Get Pods",
+                            "from": "Apply",
+                            "type": "SUCCESS",
+                            "value": ""
+                        },
+                        {
+                            "to": "Login",
+                            "from": "List deployment files",
+                            "type": "SUCCESS",
+                            "value": ""
+                        },
+                        {
+                            "to": "List deployment files",
+                            "from": "List files",
+                            "type": "SUCCESS",
+                            "value": ""
+                        },
+                        {
+                            "to": "Download Artifacts",
+                            "type": "ALWAYS",
+                            "value": ""
+                        },
+                        {
+                            "to": "3209a8af94a7a8360326708be569da",
+                            "from": "create route",
+                            "type": "SUCCESS",
+                            "value": ""
+                        },
+                        {
+                            "to": "Apply",
+                            "from": "Login",
+                            "type": "SUCCESS",
+                            "value": ""
+                        },
+                        {
+                            "to": "List files",
+                            "from": "Download Artifacts",
+                            "type": "SUCCESS",
+                            "value": ""
+                        },
+                        {
+                            "to": "create route",
+                            "from": "OpenShift Get Pods",
+                            "type": "SUCCESS",
+                            "value": ""
+                        }
+                    ],
+                    "offsets": [
+                        {
+                            "name": "3209a8af94a7a8360326708be569da",
+                            "x": -5,
+                            "y": 1190,
+                            "h": 90,
+                            "w": 150
+                        },
+                        {
+                            "name": "Login",
+                            "x": -50,
+                            "y": 590,
+                            "h": 100,
+                            "w": 240
+                        },
+                        {
+                            "name": "Apply",
+                            "x": -50,
+                            "y": 740,
+                            "h": 100,
+                            "w": 240
+                        },
+                        {
+                            "name": "create route",
+                            "x": -50,
+                            "y": 1040,
+                            "h": 100,
+                            "w": 240
+                        },
+                        {
+                            "name": "List deployment files",
+                            "x": -95,
+                            "y": 440,
+                            "h": 100,
+                            "w": 330
+                        },
+                        {
+                            "name": "List files",
+                            "x": -40,
+                            "y": 290,
+                            "h": 100,
+                            "w": 220
+                        },
+                        {
+                            "name": "OpenShift Get Pods",
+                            "x": -95,
+                            "y": 890,
+                            "h": 100,
+                            "w": 330
+                        },
+                        {
+                            "name": "Download Artifacts",
+                            "x": -125,
+                            "y": 140,
+                            "h": 100,
+                            "w": 390
+                        }
+                    ],
+                    "layoutMode": "auto",
+                    "type": "graph",
+                    "name": "eef33d8f-99b7-4f16-8780-5026cd349635",
+                    "children": [
+                        {
+                            "type": "finish",
+                            "name": "3209a8af94a7a8360326708be569da",
+                            "children": []
+                        },
+                        {
+                            "allowFailure": false,
+                            "useImpersonation": false,
+                            "showHidden": false,
+                            "impersonationUseSudo": false,
+                            "pluginVersion": 33,
+                            "commandName": "Download Artifacts",
+                            "pluginName": "UrbanCode Deploy Versioned File Storage",
+                            "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                            "properties": {
+                                "directoryOffset": ".",
+                                "artifactSetBaseDir": "",
+                                "fileIncludePatterns": "**\/*\n**\/deployment\/*\n**\/documentation\/*\n**\/packaging\/*\n**\/public\/*\n**\/views\/*",
+                                "fileExcludePatterns": "",
+                                "syncMode": "FULL",
+                                "handleIncrementalVersions": "false",
+                                "fullVerification": "true",
+                                "setFileExecuteBits": "false",
+                                "verifyFileIntegrity": "false",
+                                "versionId": "${p:version.id}",
+                                "versionType": "${p:version.type}",
+                                "serverUrl": "${p:server.url}",
+                                "compId": "${p:component.id}",
+                                "resId": "${p:resource.id}",
+                                "envId": "${p:environment.id}",
+                                "charset": "",
+                                "label": ""
+                            },
+                            "cachedAuthTokenRestriction": {
+                                "name": "System Default",
+                                "description": "Used by default for any plugin steps without a specified token restriction",
+                                "restrictions": [{
+                                    "verb": "ALL",
+                                    "url": "\/*"
+                                }]
+                            },
+                            "type": "plugin",
+                            "name": "Download Artifacts",
+                            "children": []
+                        },
+                        {
+                            "allowFailure": false,
+                            "useImpersonation": false,
+                            "showHidden": false,
+                            "impersonationUseSudo": false,
+                            "workingDir": "${p:resource\/work.dir}\/${p:component.name}",
+                            "pluginVersion": 9,
+                            "commandName": "Shell",
+                            "pluginName": "Shell",
+                            "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                            "properties": {
+                                "directoryOffset": ".",
+                                "shellInterpreter": "",
+                                "scriptBody": "oc login --token=${p:environment\/oc-token} --server=${p:environment\/oc-url}\noc project ${p:environment\/oc-project}\noc get pods",
+                                "runAsDaemon": "false",
+                                "outputFile": ""
+                            },
+                            "cachedAuthTokenRestriction": {
+                                "name": "System Default",
+                                "description": "Used by default for any plugin steps without a specified token restriction",
+                                "restrictions": [{
+                                    "verb": "ALL",
+                                    "url": "\/*"
+                                }]
+                            },
+                            "type": "plugin",
+                            "name": "OpenShift Get Pods",
+                            "children": []
+                        },
+                        {
+                            "allowFailure": false,
+                            "useImpersonation": false,
+                            "showHidden": false,
+                            "impersonationUseSudo": false,
+                            "workingDir": "${p:resource\/work.dir}\/${p:component.name}\/deployment",
+                            "pluginVersion": 16,
+                            "commandName": "Apply",
+                            "pluginName": "OpenShift",
+                            "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                            "properties": {
+                                "filename": "kubetoy-all-in-one.yaml",
+                                "flags": "",
+                                "project": "${p:environment\/oc-project}",
+                                "url": "${p:environment\/oc-url}",
+                                "username": "",
+                                "token": "${p:environment\/oc-token}",
+                                "insecure": "false",
+                                "home": ""
+                            },
+                            "cachedAuthTokenRestriction": {
+                                "name": "System Default",
+                                "description": "Used by default for any plugin steps without a specified token restriction",
+                                "restrictions": [{
+                                    "verb": "ALL",
+                                    "url": "\/*"
+                                }]
+                            },
+                            "type": "plugin",
+                            "name": "Apply",
+                            "children": []
+                        },
+                        {
+                            "allowFailure": false,
+                            "useImpersonation": false,
+                            "showHidden": false,
+                            "impersonationUseSudo": false,
+                            "workingDir": "${p:resource\/work.dir}\/${p:component.name}",
+                            "pluginVersion": 9,
+                            "commandName": "Shell",
+                            "pluginName": "Shell",
+                            "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                            "properties": {
+                                "directoryOffset": ".",
+                                "shellInterpreter": "",
+                                "scriptBody": "pwd\nwhoami\nls -al",
+                                "runAsDaemon": "false",
+                                "outputFile": ""
+                            },
+                            "cachedAuthTokenRestriction": {
+                                "name": "System Default",
+                                "description": "Used by default for any plugin steps without a specified token restriction",
+                                "restrictions": [{
+                                    "verb": "ALL",
+                                    "url": "\/*"
+                                }]
+                            },
+                            "type": "plugin",
+                            "name": "List files",
+                            "children": []
+                        },
+                        {
+                            "allowFailure": false,
+                            "useImpersonation": false,
+                            "showHidden": false,
+                            "impersonationUseSudo": false,
+                            "workingDir": "${p:resource\/work.dir}\/${p:component.name}\/deployment",
+                            "pluginVersion": 9,
+                            "commandName": "Shell",
+                            "pluginName": "Shell",
+                            "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                            "properties": {
+                                "directoryOffset": ".",
+                                "shellInterpreter": "",
+                                "scriptBody": "pwd\nls -al",
+                                "runAsDaemon": "false",
+                                "outputFile": ""
+                            },
+                            "cachedAuthTokenRestriction": {
+                                "name": "System Default",
+                                "description": "Used by default for any plugin steps without a specified token restriction",
+                                "restrictions": [{
+                                    "verb": "ALL",
+                                    "url": "\/*"
+                                }]
+                            },
+                            "type": "plugin",
+                            "name": "List deployment files",
+                            "children": []
+                        },
+                        {
+                            "allowFailure": false,
+                            "useImpersonation": false,
+                            "showHidden": false,
+                            "impersonationUseSudo": false,
+                            "pluginVersion": 16,
+                            "commandName": "Login",
+                            "pluginName": "OpenShift",
+                            "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                            "properties": {
+                                "project": "${p:environment\/oc-project}",
+                                "url": "${p:environment\/oc-url}",
+                                "username": "",
+                                "password": "",
+                                "token": "${p:environment\/oc-token}",
+                                "certificateAuthority": "",
+                                "flags": "",
+                                "insecure": "false",
+                                "home": ""
+                            },
+                            "cachedAuthTokenRestriction": {
+                                "name": "System Default",
+                                "description": "Used by default for any plugin steps without a specified token restriction",
+                                "restrictions": [{
+                                    "verb": "ALL",
+                                    "url": "\/*"
+                                }]
+                            },
+                            "type": "plugin",
+                            "name": "Login",
+                            "children": []
+                        },
+                        {
+                            "allowFailure": false,
+                            "useImpersonation": false,
+                            "showHidden": false,
+                            "impersonationUseSudo": false,
+                            "pluginVersion": 9,
+                            "commandName": "Shell",
+                            "pluginName": "Shell",
+                            "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                            "properties": {
+                                "directoryOffset": ".",
+                                "shellInterpreter": "",
+                                "scriptBody": "#!\/bin\/sh\nsleep 5\nexport KUBECONFIG=.\/kubeconfig\noc login --token=${p:environment\/oc-token} --server=${p:environment\/oc-url}\noc project ${p:environment\/oc-project}\noc expose service kubetoy-service -l name=kubetoy-route --name=kubetoy-route",
+                                "runAsDaemon": "false",
+                                "outputFile": ""
+                            },
+                            "cachedAuthTokenRestriction": {
+                                "name": "System Default",
+                                "description": "Used by default for any plugin steps without a specified token restriction",
+                                "restrictions": [{
+                                    "verb": "ALL",
+                                    "url": "\/*"
+                                }]
+                            },
+                            "type": "plugin",
+                            "name": "create route",
+                            "children": []
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "Deploy-KubeToy",
+                "description": "",
+                "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+                "takesVersion": true,
+                "inventoryActionType": "ADD",
+                "status": "Active",
+                "configActionType": "ADD",
+                "active": true,
+                "path": "components\/1749c91b-7141-1349-3280-35cec68c8c45\/processes\/1749c91b-749a-6137-a36a-d9b56eea3de1",
+                "deleted": false,
+                "propDefs": [],
+                "rootActivity": {
+                    "edges": [
+                        {
+                            "to": "Create Route to KubeToy",
+                            "from": "OpenShift Apply",
+                            "type": "SUCCESS",
+                            "value": ""
+                        },
+                        {
+                            "to": "OpenShift Login and Display OpenShift Details",
+                            "from": "Download Artifacts",
+                            "type": "SUCCESS",
+                            "value": ""
+                        },
+                        {
+                            "to": "e2721b5449067ea21b6331980af353",
+                            "from": "Create Route to KubeToy",
+                            "type": "SUCCESS",
+                            "value": ""
+                        },
+                        {
+                            "to": "OpenShift Apply",
+                            "from": "OpenShift Login and Display OpenShift Details",
+                            "type": "SUCCESS",
+                            "value": ""
+                        },
+                        {
+                            "to": "Download Artifacts",
+                            "type": "ALWAYS",
+                            "value": ""
+                        }
+                    ],
+                    "offsets": [
+                        {
+                            "name": "Apply",
+                            "x": -140,
+                            "y": 700,
+                            "h": 70,
+                            "w": 180
+                        },
+                        {
+                            "name": "OpenShift Login and Display OpenShift Details",
+                            "x": -140,
+                            "y": 250,
+                            "h": 70,
+                            "w": 390
+                        },
+                        {
+                            "name": "OpenShift Apply",
+                            "x": -45,
+                            "y": 370,
+                            "h": 70,
+                            "w": 200
+                        },
+                        {
+                            "name": "Create Route to KubeToy",
+                            "x": -75,
+                            "y": 490,
+                            "h": 70,
+                            "w": 260
+                        },
+                        {
+                            "name": "e2721b5449067ea21b6331980af353",
+                            "x": -5,
+                            "y": 610,
+                            "h": 80,
+                            "w": 120
+                        },
+                        {
+                            "name": "Download Artifacts",
+                            "x": -75,
+                            "y": 130,
+                            "h": 70,
+                            "w": 260
+                        }
+                    ],
+                    "layoutMode": "auto",
+                    "type": "graph",
+                    "name": "ca397926-8a13-44e0-af52-eb7cb09249df",
+                    "children": [
+                        {
+                            "type": "finish",
+                            "name": "e2721b5449067ea21b6331980af353",
+                            "children": []
+                        },
+                        {
+                            "allowFailure": false,
+                            "useImpersonation": false,
+                            "showHidden": false,
+                            "impersonationUseSudo": false,
+                            "pluginVersion": 9,
+                            "commandName": "Shell",
+                            "pluginName": "Shell",
+                            "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                            "properties": {
+                                "directoryOffset": ".",
+                                "shellInterpreter": "",
+                                "scriptBody": "#!\/bin\/bash\nexport KUBECONFIG=.\/kubeconfig\noc login --token=${p:environment\/oc-token} --server=${p:environment\/oc-url}\noc project ${p:environment\/oc-project}\necho \"I am user $(id)\"\necho \"My Home directory is $HOME\"\necho \"My current OpenShift project is $(oc project)\"\necho \"Pods running in this namespace\/project are\"\noc get pods",
+                                "runAsDaemon": "false",
+                                "outputFile": ""
+                            },
+                            "cachedAuthTokenRestriction": {
+                                "name": "System Default",
+                                "description": "Used by default for any plugin steps without a specified token restriction",
+                                "restrictions": [{
+                                    "verb": "ALL",
+                                    "url": "\/*"
+                                }]
+                            },
+                            "type": "plugin",
+                            "name": "OpenShift Login and Display OpenShift Details",
+                            "children": []
+                        },
+                        {
+                            "allowFailure": false,
+                            "useImpersonation": false,
+                            "showHidden": false,
+                            "impersonationUseSudo": false,
+                            "pluginVersion": 33,
+                            "commandName": "Download Artifacts",
+                            "pluginName": "UrbanCode Deploy Versioned File Storage",
+                            "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                            "properties": {
+                                "directoryOffset": ".",
+                                "artifactSetBaseDir": "",
+                                "fileIncludePatterns": "**\/*",
+                                "fileExcludePatterns": "",
+                                "syncMode": "FULL",
+                                "handleIncrementalVersions": "false",
+                                "fullVerification": "true",
+                                "setFileExecuteBits": "false",
+                                "verifyFileIntegrity": "false",
+                                "versionId": "${p:version.id}",
+                                "versionType": "${p:version.type}",
+                                "serverUrl": "${p:server.url}",
+                                "compId": "${p:component.id}",
+                                "resId": "${p:resource.id}",
+                                "envId": "${p:environment.id}",
+                                "charset": "",
+                                "label": ""
+                            },
+                            "cachedAuthTokenRestriction": {
+                                "name": "System Default",
+                                "description": "Used by default for any plugin steps without a specified token restriction",
+                                "restrictions": [{
+                                    "verb": "ALL",
+                                    "url": "\/*"
+                                }]
+                            },
+                            "type": "plugin",
+                            "name": "Download Artifacts",
+                            "children": []
+                        },
+                        {
+                            "allowFailure": false,
+                            "useImpersonation": false,
+                            "showHidden": false,
+                            "impersonationUseSudo": false,
+                            "pluginVersion": 9,
+                            "commandName": "Shell",
+                            "pluginName": "Shell",
+                            "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                            "properties": {
+                                "directoryOffset": ".",
+                                "shellInterpreter": "",
+                                "scriptBody": "#!\/bin\/sh\nexport KUBECONFIG=.\/kubeconfig\noc expose service kubetoy-service -l name=kubetoy-route --name=kubetoy-route",
+                                "runAsDaemon": "false",
+                                "outputFile": ""
+                            },
+                            "cachedAuthTokenRestriction": {
+                                "name": "System Default",
+                                "description": "Used by default for any plugin steps without a specified token restriction",
+                                "restrictions": [{
+                                    "verb": "ALL",
+                                    "url": "\/*"
+                                }]
+                            },
+                            "type": "plugin",
+                            "name": "Create Route to KubeToy",
+                            "children": []
+                        },
+                        {
+                            "allowFailure": false,
+                            "useImpersonation": false,
+                            "showHidden": false,
+                            "impersonationUseSudo": false,
+                            "workingDir": "${p:resource\/work.dir}\/${p:component.name}\/deployment",
+                            "pluginVersion": 16,
+                            "commandName": "Apply",
+                            "pluginName": "OpenShift",
+                            "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                            "properties": {
+                                "filename": "kubetoy-all-in-one.yaml",
+                                "flags": "",
+                                "project": "rlange",
+                                "url": "https:\/\/c107-e.us-south.containers.cloud.ibm.com:30085",
+                                "username": "",
+                                "token": "${p:environment\/oc-token}",
+                                "insecure": "false",
+                                "home": ""
+                            },
+                            "cachedAuthTokenRestriction": {
+                                "name": "System Default",
+                                "description": "Used by default for any plugin steps without a specified token restriction",
+                                "restrictions": [{
+                                    "verb": "ALL",
+                                    "url": "\/*"
+                                }]
+                            },
+                            "type": "plugin",
+                            "name": "Apply",
+                            "children": []
+                        },
+                        {
+                            "allowFailure": false,
+                            "useImpersonation": false,
+                            "showHidden": false,
+                            "impersonationUseSudo": false,
+                            "pluginVersion": 9,
+                            "commandName": "Shell",
+                            "pluginName": "Shell",
+                            "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                            "properties": {
+                                "directoryOffset": ".",
+                                "shellInterpreter": "",
+                                "scriptBody": "#!\/bin\/bash\nexport KUBECONFIG=.\/kubeconfig\noc apply --namespace=${p:environment\/oc-project} -f deployment\/kubetoy-all-in-one.yaml",
+                                "runAsDaemon": "false",
+                                "outputFile": ""
+                            },
+                            "cachedAuthTokenRestriction": {
+                                "name": "System Default",
+                                "description": "Used by default for any plugin steps without a specified token restriction",
+                                "restrictions": [{
+                                    "verb": "ALL",
+                                    "url": "\/*"
+                                }]
+                            },
+                            "type": "plugin",
+                            "name": "OpenShift Apply",
+                            "children": []
+                        }
+                    ]
+                }
+            }
+        ],
+        "configTemplates": [],
+        "genericProcesses": [],
+        "teamMappings": [],
+        "tags": []
+    }],
+    "environments": [
+        {
+            "name": "DEV",
+            "color": "#00B2EF",
+            "requireApprovals": false,
+            "noSelfApprovals": false,
+            "exemptProcesses": [],
+            "lockSnapshots": false,
+            "requireSnapshots": false,
+            "cleanupDaysToKeep": 0,
+            "cleanupCountToKeep": 0,
+            "enableProcessHistoryCleanup": true,
+            "useSystemDefaultDays": true,
+            "historyCleanupDaysToKeep": 365,
+            "order": 0,
+            "active": true,
+            "propSheet": {"properties": [
+                {
+                    "name": "oc-project",
+                    "value": "ozdemo01",
+                    "description": "",
+                    "secure": false
+                },
+                {
+                    "name": "oc-token",
+                    "value": "TOKEN",
+                    "description": "",
+                    "secure": true
+                },
+                {
+                    "name": "oc-url",
+                    "value": "https:\/\/c100-e.eu-de.containers.cloud.ibm.com:31025",
+                    "description": "",
+                    "secure": false
+                }
+            ]},
+            "templatePropSheet": {
+                "name": "template",
+                "properties": []
+            },
+            "baseResources": [
+                {
+                    "basePath": "",
+                    "tree": {
+                        "name": "DEV",
+                        "path": "\/DEV",
+                        "description": "",
+                        "parentName": "",
+                        "inheritTeam": false,
+                        "propSheet": {
+                            "name": "custom",
+                            "properties": []
+                        },
+                        "tags": [],
+                        "teamMappings": [],
+                        "impersonationUseSudo": false,
+                        "impersonationForce": false,
+                        "prototype": false
+                    }
+                },
+                {
+                    "basePath": "",
+                    "tree": {
+                        "name": "UCD-agent",
+                        "path": "\/UCD-agent",
+                        "description": "",
+                        "parentName": "",
+                        "inheritTeam": false,
+                        "propSheet": {
+                            "name": "custom",
+                            "properties": []
+                        },
+                        "tags": [],
+                        "teamMappings": [],
+                        "impersonationUseSudo": false,
+                        "impersonationForce": false,
+                        "prototype": false
+                    }
+                }
+            ],
+            "baseResourcesFull": [
+                {
+                    "basePath": "",
+                    "tree": {
+                        "name": "DEV",
+                        "path": "\/DEV",
+                        "description": "",
+                        "parentName": "",
+                        "inheritTeam": false,
+                        "propSheet": {
+                            "name": "custom",
+                            "properties": []
+                        },
+                        "tags": [],
+                        "teamMappings": [],
+                        "impersonationUseSudo": false,
+                        "impersonationForce": false,
+                        "prototype": false,
+                        "children": []
+                    }
+                },
+                {
+                    "basePath": "",
+                    "tree": {
+                        "name": "UCD-agent",
+                        "path": "\/UCD-agent",
+                        "description": "",
+                        "parentName": "",
+                        "inheritTeam": false,
+                        "propSheet": {
+                            "name": "custom",
+                            "properties": []
+                        },
+                        "tags": [],
+                        "teamMappings": [],
+                        "impersonationUseSudo": false,
+                        "impersonationForce": false,
+                        "prototype": false,
+                        "children": [{
+                            "name": "agent-ucd-agent-1-ibm-ucda-prod-0",
+                            "path": "\/UCD-agent\/agent-ucd-agent-1-ibm-ucda-prod-0",
+                            "description": "",
+                            "parentName": "UCD-agent",
+                            "inheritTeam": true,
+                            "type": "agent",
+                            "typeName": "agent-ucd-agent-1-ibm-ucda-prod-0",
+                            "propSheet": {
+                                "name": "custom",
+                                "properties": []
+                            },
+                            "tags": [],
+                            "teamMappings": [],
+                            "impersonationUseSudo": false,
+                            "impersonationForce": false,
+                            "prototype": false,
+                            "children": [{
+                                "name": "KubeToy",
+                                "path": "\/UCD-agent\/agent-ucd-agent-1-ibm-ucda-prod-0\/KubeToy",
+                                "description": "",
+                                "parentName": "agent-ucd-agent-1-ibm-ucda-prod-0",
+                                "inheritTeam": true,
+                                "roleName": "KubeToy",
+                                "roleProperties": {
+                                    "name": "KubeToy",
+                                    "properties": []
+                                },
+                                "propSheet": {
+                                    "name": "custom",
+                                    "properties": []
+                                },
+                                "tags": [],
+                                "teamMappings": [],
+                                "impersonationUseSudo": false,
+                                "impersonationForce": false,
+                                "prototype": false,
+                                "children": []
+                            }]
+                        }]
+                    }
+                }
+            ],
+            "componentPropSheets": [{
+                "properties": [],
+                "componentName": "KubeToy"
+            }],
+            "teamMappings": []
+        },
+        {
+            "name": "D2",
+            "description": "",
+            "color": "#003F69",
+            "requireApprovals": false,
+            "noSelfApprovals": false,
+            "exemptProcesses": [],
+            "lockSnapshots": false,
+            "requireSnapshots": false,
+            "cleanupDaysToKeep": 0,
+            "cleanupCountToKeep": 0,
+            "enableProcessHistoryCleanup": true,
+            "useSystemDefaultDays": true,
+            "historyCleanupDaysToKeep": 365,
+            "order": 1,
+            "active": true,
+            "propSheet": {"properties": [
+                {
+                    "name": "oc-project",
+                    "value": "ozdemo01",
+                    "description": "",
+                    "secure": false
+                },
+                {
+                    "name": "oc-token",
+                    "value": "TOKEN",
+                    "description": "",
+                    "secure": true
+                },
+                {
+                    "name": "oc-url",
+                    "value": "https:\/\/c100-e.eu-de.containers.cloud.ibm.com:31025",
+                    "description": "",
+                    "secure": false
+                }
+            ]},
+            "templatePropSheet": {
+                "name": "template",
+                "properties": []
+            },
+            "baseResources": [],
+            "baseResourcesFull": [],
+            "componentPropSheets": [{
+                "properties": [],
+                "componentName": "KubeToy"
+            }],
+            "teamMappings": []
+        }
+    ],
+    "processes": [
+        {
+            "name": "Display OpenShift Cluster Details",
+            "description": "",
+            "inventoryManagementType": "AUTOMATIC",
+            "offlineAgentHandling": "PRE_EXECUTION_CHECK",
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "c446d1acec597bbf844687ba49689c",
+                        "type": "ALWAYS",
+                        "value": ""
+                    },
+                    {
+                        "to": "f801f5bc8738c1fc24a57ccc8fd088",
+                        "from": "c446d1acec597bbf844687ba49689c",
+                        "type": "SUCCESS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "f801f5bc8738c1fc24a57ccc8fd088",
+                        "x": -5,
+                        "y": 450,
+                        "h": 80,
+                        "w": 120
+                    },
+                    {
+                        "name": "c446d1acec597bbf844687ba49689c",
+                        "x": -120,
+                        "y": 230,
+                        "h": 80,
+                        "w": 350
+                    }
+                ],
+                "layoutMode": "auto",
+                "type": "graph",
+                "name": "fac57049-18b9-4892-bd02-83f69d8686cf",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "f801f5bc8738c1fc24a57ccc8fd088",
+                        "children": []
+                    },
+                    {
+                        "componentName": "KubeToy",
+                        "properties": [
+                            {
+                                "name": "maxIteration",
+                                "value": "-1"
+                            },
+                            {
+                                "name": "isIgnoreChildWarnings",
+                                "value": "false"
+                            },
+                            {
+                                "name": "runOnlyOnFirst",
+                                "value": "false"
+                            },
+                            {
+                                "name": "failFast",
+                                "value": "false"
+                            }
+                        ],
+                        "type": "componentEnvironmentIterator",
+                        "name": "c446d1acec597bbf844687ba49689c",
+                        "children": [{
+                            "componentProcessName": "Check OpenShift Cluster Status",
+                            "componentName": "KubeToy",
+                            "allowFailure": false,
+                            "properties": {"isIgnoreChildWarnings": "false"},
+                            "draftProperties": {"isIgnoreChildWarnings": "false"},
+                            "type": "componentProcess",
+                            "name": "Component: \"KubeToy\"",
+                            "children": []
+                        }]
+                    }
+                ]
+            },
+            "propDefs": [],
+            "versionPresets": []
+        },
+        {
+            "name": "Deploy KubeToy",
+            "description": "",
+            "inventoryManagementType": "AUTOMATIC",
+            "offlineAgentHandling": "PRE_EXECUTION_CHECK",
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "3576ab3ed954a8bd009fefb30c0be1",
+                        "type": "ALWAYS",
+                        "value": ""
+                    },
+                    {
+                        "to": "57c024f9d7a6607a1a761cadfbddeb",
+                        "from": "3576ab3ed954a8bd009fefb30c0be1",
+                        "type": "SUCCESS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "57c024f9d7a6607a1a761cadfbddeb",
+                        "x": -5,
+                        "y": 450,
+                        "h": 80,
+                        "w": 120
+                    },
+                    {
+                        "name": "3576ab3ed954a8bd009fefb30c0be1",
+                        "x": -50,
+                        "y": 230,
+                        "h": 70,
+                        "w": 270
+                    }
+                ],
+                "layoutMode": "auto",
+                "type": "graph",
+                "name": "9001e33a-668c-4391-979a-b350fc8be636",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "57c024f9d7a6607a1a761cadfbddeb",
+                        "children": []
+                    },
+                    {
+                        "componentName": "KubeToy",
+                        "properties": [
+                            {
+                                "name": "maxIteration",
+                                "value": "-1"
+                            },
+                            {
+                                "name": "isIgnoreChildWarnings",
+                                "value": "false"
+                            },
+                            {
+                                "name": "failFast",
+                                "value": "false"
+                            }
+                        ],
+                        "type": "componentEnvironmentIterator",
+                        "name": "3576ab3ed954a8bd009fefb30c0be1",
+                        "children": [{
+                            "componentName": "KubeToy",
+                            "status": "Active",
+                            "type": "inventoryVersionDiff",
+                            "name": "8bfb18d3-22bb-4369-9015-7ec208ac433d",
+                            "children": [{
+                                "componentProcessName": "Deploy-KubeToy",
+                                "componentName": "KubeToy",
+                                "allowFailure": false,
+                                "properties": {"isIgnoreChildWarnings": "false"},
+                                "draftProperties": {"isIgnoreChildWarnings": "false"},
+                                "type": "componentProcess",
+                                "name": "Install: \"KubeToy\"",
+                                "children": []
+                            }]
+                        }]
+                    }
+                ]
+            },
+            "propDefs": [],
+            "versionPresets": []
+        },
+        {
+            "name": "Cleanup_Deployment",
+            "description": "",
+            "inventoryManagementType": "AUTOMATIC",
+            "offlineAgentHandling": "PRE_EXECUTION_CHECK",
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "11534eb49f205c9f6ce853bd092b60",
+                        "type": "ALWAYS",
+                        "value": ""
+                    },
+                    {
+                        "to": "60cd9dd59a55e46b4e232a88969a26",
+                        "from": "11534eb49f205c9f6ce853bd092b60",
+                        "type": "SUCCESS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "60cd9dd59a55e46b4e232a88969a26",
+                        "x": -5,
+                        "y": 450,
+                        "h": 80,
+                        "w": 120
+                    },
+                    {
+                        "name": "11534eb49f205c9f6ce853bd092b60",
+                        "x": -80,
+                        "y": 230,
+                        "h": 80,
+                        "w": 270
+                    }
+                ],
+                "layoutMode": "auto",
+                "type": "graph",
+                "name": "92ee5f70-ec5b-49d1-8f02-862eaa3fb2ad",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "60cd9dd59a55e46b4e232a88969a26",
+                        "children": []
+                    },
+                    {
+                        "componentName": "KubeToy",
+                        "properties": [
+                            {
+                                "name": "maxIteration",
+                                "value": "-1"
+                            },
+                            {
+                                "name": "isIgnoreChildWarnings",
+                                "value": "false"
+                            },
+                            {
+                                "name": "failFast",
+                                "value": "false"
+                            }
+                        ],
+                        "type": "componentEnvironmentIterator",
+                        "name": "11534eb49f205c9f6ce853bd092b60",
+                        "children": [{
+                            "componentName": "KubeToy",
+                            "status": "Active",
+                            "type": "inventoryVersionDiff",
+                            "name": "74d3e233-43a4-4b2a-a364-79936b7806fa",
+                            "children": [{
+                                "componentProcessName": "Cleanup-KubeToy",
+                                "componentName": "KubeToy",
+                                "allowFailure": false,
+                                "properties": {"isIgnoreChildWarnings": "false"},
+                                "draftProperties": {"isIgnoreChildWarnings": "false"},
+                                "type": "componentProcess",
+                                "name": "Delete: \"KubeToy\"",
+                                "children": []
+                            }]
+                        }]
+                    }
+                ]
+            },
+            "propDefs": [],
+            "versionPresets": []
+        },
+        {
+            "name": "Deploy KubeToy ocp plugin",
+            "description": "",
+            "inventoryManagementType": "AUTOMATIC",
+            "offlineAgentHandling": "PRE_EXECUTION_CHECK",
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "3576ab3ed954a8bd009fefb30c0be1",
+                        "type": "ALWAYS",
+                        "value": ""
+                    },
+                    {
+                        "to": "57c024f9d7a6607a1a761cadfbddeb",
+                        "from": "3576ab3ed954a8bd009fefb30c0be1",
+                        "type": "SUCCESS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "57c024f9d7a6607a1a761cadfbddeb",
+                        "x": -5,
+                        "y": 450,
+                        "h": 80,
+                        "w": 120
+                    },
+                    {
+                        "name": "3576ab3ed954a8bd009fefb30c0be1",
+                        "x": -50,
+                        "y": 230,
+                        "h": 70,
+                        "w": 210
+                    }
+                ],
+                "layoutMode": "auto",
+                "type": "graph",
+                "name": "609cab62-d50f-43de-a17e-58038f8f74c0",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "57c024f9d7a6607a1a761cadfbddeb",
+                        "children": []
+                    },
+                    {
+                        "componentName": "KubeToy",
+                        "properties": [
+                            {
+                                "name": "maxIteration",
+                                "value": "-1"
+                            },
+                            {
+                                "name": "isIgnoreChildWarnings",
+                                "value": "false"
+                            },
+                            {
+                                "name": "failFast",
+                                "value": "false"
+                            }
+                        ],
+                        "type": "componentEnvironmentIterator",
+                        "name": "3576ab3ed954a8bd009fefb30c0be1",
+                        "children": [{
+                            "componentName": "KubeToy",
+                            "status": "Active",
+                            "type": "inventoryVersionDiff",
+                            "name": "60243c72-8670-45b7-a44a-2abca7d9ada4",
+                            "children": [{
+                                "componentProcessName": "Deploy",
+                                "componentName": "KubeToy",
+                                "allowFailure": false,
+                                "properties": {"isIgnoreChildWarnings": "false"},
+                                "draftProperties": {"isIgnoreChildWarnings": "false"},
+                                "type": "componentProcess",
+                                "name": "Install: \"KubeToy\"",
+                                "children": []
+                            }]
+                        }]
+                    }
+                ]
+            },
+            "propDefs": [],
+            "versionPresets": []
+        }
+    ],
+    "genericProcesses": [],
+    "teamMappings": [],
+    "tags": [{
+        "id": "1749c91b-891c-58cf-aa21-5c7613371323",
+        "name": "OpenShift",
+        "color": "#D9182D",
+        "description": "",
+        "objectType": "Application"
+    }]
+}
