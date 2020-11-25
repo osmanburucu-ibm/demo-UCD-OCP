@@ -36,17 +36,17 @@ demoing for deploying apps to openshift using urbancode deploy
 * Source Configuration Type: git
 * [Repository url](https://github.com/IBM-ICP-CoC/KubeToy.git): <https://github.com/IBM-ICP-CoC/KubeToy.git>
 
-* ![Kubetoy component config 1](attachments/Component-Kubetoy configuration - 01.png)
-* ![Kubetoy component config 2](attachments/Component-Kubetoy configuration - 02.png)
-* ![Kubetoy component config 3](attachments/Component-Kubetoy configuration - 03.png)
+* ![Kubetoy component config 1](attachments/Component-Kubetoy_configuration-01.png)
+* ![Kubetoy component config 2](attachments/Component-Kubetoy_configuration-02.png)
+* ![Kubetoy component config 3](attachments/Component-Kubetoy_configuration-03.png)
 
 #### Processes
 
 * Deploy
   * using mostly OCP Plugin steps
-  * ![Deploy](attachments/Process - Deploy.png)
+  * ![Deploy](attachments/Process-Deploy.png)
     * STEPS
-      * ![List files](attachments/List files.png) and ![List Deployment files](attachments/List Deployment files.png) are shell steps to show downloaded files
+      * ![List files](attachments/List_files.png) and ![List Deployment files](attachments/List_Deployment_files.png) are shell steps to show downloaded files
       * Login:
         * ![OCP Plugin Login Step](attachments/ocp-plugin-login.png)
         * for the token field i have used the reference
@@ -62,11 +62,11 @@ demoing for deploying apps to openshift using urbancode deploy
         * for Access Token i have used:
 
         ~~~sh
-         ${p:environment/oc-token} 
+         ${p:environment/oc-token}
         ~~~
 
       * Create Route:
-        * ![Shell: create route](attachments/OpenShift create route.png) 
+        * ![Shell: create route](attachments/OpenShift_create_route.png)
 
         ~~~sh
         #!/bin/sh
@@ -84,7 +84,7 @@ demoing for deploying apps to openshift using urbancode deploy
 
 * Deploy-Kubetoy
   * uses shell commands
-  * ![Deploy-Kubetoy](attachments/Process - Deploy-Kubetoy.png)
-  * ![OpenShift Login and Display OpenShift Details](attachments/OpenShift Login and Display OpenShift Details.png)
-  * ![OpenShift Apply (shell)](attachments/OpenShift Apply - Shell.png)
-  * ![Create Route to Kubetoy (shell)](attachments/OpenShift Create Route to KubeToy - shell.png)
+  * ![Deploy-Kubetoy](attachments/Process-Deploy-Kubetoy.png)
+  * ![OpenShift Login and Display OpenShift Details](attachments/OpenShift_Login_and_Display_OpenShift_Details.png)
+  * ![OpenShift Apply (shell)](attachments/OpenShift_Apply-Shell.png)
+  * ![Create Route to Kubetoy (shell)](attachments/OpenShift_Create_Route_to_KubeToy-shell.png)
